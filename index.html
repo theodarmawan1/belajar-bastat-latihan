@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal Latihan Soal Statistika Dasar - UTS & UAS. Kumpulan soal, pembahasan interaktif, boxplot dinamis, dan kalkulator distribusi statistik.">
+  
+  <title>Portal Latihan Soal Statistika - UTS & UAS</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- KaTeX CSS for LaTeX Mathematics Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="brand-name">
+          <h1>Statistika Portal</h1>
+          <span>Latihan Soal UTS & UAS</span>
+        </div>
+      </div>
+      
+      <nav class="nav-menu">
+        <div class="nav-label">Menu Utama</div>
+        <li class="nav-item active" data-tab="dashboard">
+          <button><i class="fas fa-th-large"></i> Dashboard</button>
+        </li>
+        
+        <div class="nav-label">Kategori Soal</div>
+        <li class="nav-item" data-tab="uts">
+          <button><i class="fas fa-file-signature"></i> Latihan UTS</button>
+        </li>
+        <li class="nav-item" data-tab="uas">
+          <button><i class="fas fa-graduation-cap"></i> Latihan UAS</button>
+        </li>
+        
+        <div class="nav-label">Alat Latihan</div>
+        <li class="nav-item" data-tab="playground">
+          <button><i class="fas fa-calculator"></i> Playground / Calc</button>
+        </li>
+      </nav>
+      
+      <div class="theme-toggle-container">
+        <span style="font-size: 0.85rem; font-weight:600; color:var(--text-muted);">Ganti Tema</span>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Navigation / Search Bar -->
+      <header class="top-bar">
+        <button id="menu-trigger" class="menu-trigger" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="page-title">
+          <h2>Dashboard Utama</h2>
+        </div>
+        
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="search-input" placeholder="Cari topik (e.g. regresi, binomial)...">
+        </div>
+      </header>
+
+      <!-- TAB SECTION 1: Dashboard Home -->
+      <section id="dashboard-section" class="content-section" style="display: flex; flex-direction: column; gap: 2rem;">
+        
+        <!-- Hero Overview -->
+        <div class="hero-widget">
+          <div class="hero-text">
+            <h3>Selamat Datang di Portal Statistika</h3>
+            <p>
+              Media pembelajaran mandiri yang menyajikan latihan soal UTS dan UAS Statistika Dasar. Dilengkapi dengan kunci jawaban lengkap, penjelasan langkah demi langkah, visualisasi interaktif box plot, serta kalkulator distribusi untuk memverifikasi pengerjaan tugas Anda.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Documents Section Title -->
+        <div class="section-header">
+          <h3 style="font-size: 1.35rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="far fa-folder-open text-indigo"></i> File Latihan Soal (PDF)
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+            Unduh file PDF asli atau langsung pelajari pembahasan soal interaktif di website ini.
+          </p>
+        </div>
+        
+        <!-- Grid of PDF Files -->
+        <div id="pdf-grid" class="pdf-grid">
+          <!-- Dynamic rendered from app.js -->
+        </div>
+        
+      </section>
+
+      <!-- TAB SECTION 2: UTS Panel -->
+      <section id="uts-section" class="content-section" style="display: none; flex-direction: column; gap: 2rem;">
+        <!-- Dynamic rendered from app.js -->
+      </section>
+
+      <!-- TAB SECTION 3: UAS Panel -->
+      <section id="uas-section" class="content-section" style="display: none; flex-direction: column; gap: 2rem;">
+        <!-- Dynamic rendered from app.js -->
+      </section>
+
+      <!-- TAB SECTION 4: Playground / Calculators -->
+      <section id="playground-section" class="content-section" style="display: none; flex-direction: column; gap: 2rem;">
+        
+        <div class="playground-grid">
+          
+          <!-- Binomial Calculator -->
+          <div class="calc-card">
+            <div class="calc-card-header">
+              <h3><i class="fas fa-percentage text-indigo"></i> Kalkulator Distribusi Binomial</h3>
+              <p>Hitung probabilitas kejadian binomial berdasarkan parameter n, p, dan k.</p>
+            </div>
+            
+            <div class="calc-form">
+              <div class="form-group">
+                <label for="bin-n">Jumlah Percobaan (n)</label>
+                <input type="number" id="bin-n" value="8" min="1" step="1">
+              </div>
+              <div class="form-group">
+                <label for="bin-p">Peluang Sukses (p) - (Desimal, e.g. 0.75)</label>
+                <input type="number" id="bin-p" value="0.75" min="0" max="1" step="0.05">
+              </div>
+              <div class="form-group">
+                <label for="bin-k">Jumlah Sukses yang Diinginkan (k)</label>
+                <input type="number" id="bin-k" value="6" min="0" step="1">
+              </div>
+              <div class="form-group">
+                <label for="bin-type">Tipe Probabilitas</label>
+                <select id="bin-type">
+                  <option value="exact">Tepat k: P(X = k)</option>
+                  <option value="atmost">Paling banyak k: P(X ≤ k)</option>
+                  <option value="atleast">Setidaknya k: P(X ≥ k)</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="calc-result-box">
+              <span class="calc-result-title">Hasil Probabilitas</span>
+              <span id="bin-result-val" class="calc-result-val">0.00000</span>
+              <div id="bin-result-steps" class="calc-steps">
+                Langkah pengerjaan akan ditampilkan di sini.
+              </div>
+            </div>
+          </div>
+          
+          <!-- Normal Distribution Calculator -->
+          <div class="calc-card">
+            <div class="calc-card-header">
+              <h3><i class="fas fa-wave-square text-teal"></i> Kalkulator Distribusi Normal</h3>
+              <p>Standardisasikan nilai asli X ke skor Z dan hitung probabilitas kurva normal.</p>
+            </div>
+            
+            <div class="calc-form">
+              <div class="form-group">
+                <label for="norm-mean">Rata-rata (μ)</label>
+                <input type="number" id="norm-mean" value="75">
+              </div>
+              <div class="form-group">
+                <label for="norm-std">Standar Deviasi (σ)</label>
+                <input type="number" id="norm-std" value="4" min="0.0001" step="0.5">
+              </div>
+              <div class="form-group">
+                <label for="norm-x1">Batas Nilai X1</label>
+                <input type="number" id="norm-x1" value="65">
+              </div>
+              <div id="norm-x2-group" class="form-group" style="display: none;">
+                <label for="norm-x2">Batas Nilai X2 (Atas)</label>
+                <input type="number" id="norm-x2" value="100">
+              </div>
+              <div class="form-group">
+                <label for="norm-type">Tipe Luas Area (Probabilitas)</label>
+                <select id="norm-type">
+                  <option value="greater">Lebih besar: P(X > X1)</option>
+                  <option value="less">Lebih kecil: P(X < X1)</option>
+                  <option value="between">Di antara: P(X1 < X < X2)</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="calc-result-box">
+              <span class="calc-result-title">Hasil Probabilitas</span>
+              <span id="norm-result-val" class="calc-result-val">0.00000</span>
+              <div id="norm-result-steps" class="calc-steps">
+                Langkah standardisasi Z akan ditampilkan di sini.
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </section>
+
+    </main>
+    
+  </div>
+
+  <!-- KaTeX core library & Auto-render extension for math formulas -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  
+  <!-- Data and Application Script Files -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
