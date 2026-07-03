@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Login - Portal Latihan Soal Statistika</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* 
+     * Stylesheet Halaman Login Kustom (Embedded)
+     * Fungsi: Menyediakan tampilan mandiri yang premium tanpa bergantung pada file CSS eksternal.
+     * Menggunakan tema gelap (dark mode), efek glassmorphism, dan font modern.
+     */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg-primary: #080c14;
+      --bg-gradient: radial-gradient(circle at top right, #1e1b4b 0%, #080c14 100%);
+      --card-bg: rgba(30, 41, 59, 0.45);
+      --card-border: rgba(255, 255, 255, 0.06);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --primary-hover: #818cf8;
+      --primary-light: rgba(99, 102, 241, 0.15);
+      --secondary: #14b8a6;
+      --error-bg: rgba(239, 68, 68, 0.15);
+      --error-border: rgba(239, 68, 68, 0.4);
+      --error-text: #fca5a5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+    }
+
+    /* Glowing decorative backgrounds */
+    .login-container::before {
+      content: '';
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+      top: -80px;
+      left: -80px;
+      z-index: -1;
+    }
+
+    .login-container::after {
+      content: '';
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
+      bottom: -80px;
+      right: -80px;
+      z-index: -1;
+    }
+
+    .login-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .login-header {
+      text-align: center;
+    }
+
+    .login-logo {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      margin-bottom: 1rem;
+    }
+
+    .login-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .login-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Error Alert banner */
+    .error-banner {
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      color: var(--error-text);
+      font-size: 0.85rem;
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .error-banner i {
+      font-size: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-wrapper i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.6rem;
+      background: rgba(8, 12, 20, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-wrapper input:focus {
+      border-color: var(--primary);
+      background: rgba(8, 12, 20, 0.8);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .btn-login:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-login:active {
+      transform: translateY(1px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">
+          <i class="fas fa-lock"></i>
+        </div>
+        <h2>Akses Terbatas</h2>
+        <p>Silakan masuk untuk mengakses Portal Statistika</p>
+      </div>
+
+      <!-- Warning Alert Banner -->
+      <div id="error-banner" class="error-banner">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>Username atau password salah. Coba lagi.</span>
+      </div>
+
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" name="username" placeholder="Masukkan username" required autocomplete="username">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.8rem;">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <i class="fas fa-key"></i>
+            <input type="password" id="password" name="password" placeholder="Masukkan password" required autocomplete="current-password">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">
+          Masuk <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Memeriksa parameter URL jika terjadi kegagalan autentikasi sebelumnya
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('error') === '1') {
+      document.getElementById('error-banner').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
