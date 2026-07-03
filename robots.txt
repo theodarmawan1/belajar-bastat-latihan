@@ -1,0 +1,6 @@
+# robots.txt
+# Fungsi: Mencegah semua jenis search engine crawler (seperti Googlebot, Bingbot) 
+# untuk melakukan indexing dan menelusuri halaman-halaman pada website ini.
+
+User-agent: *
+Disallow: /
